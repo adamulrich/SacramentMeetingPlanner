@@ -14,7 +14,7 @@ namespace SacramentMeetingPlanner.Pages
 
         public void OnGet()
         {
-
+            Response.Redirect("MeetingPlanner/Index");
         }
     }
 }
