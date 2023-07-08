@@ -35,15 +35,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.openingHymnId" class="control-label"></label>
-                <select asp-for="SacramentMeeting.openingHymnId" class ="form-control" asp-items="ViewBag.openingHymnId"></select>
+                <select asp-for="SacramentMeeting.openingHymnId" class ="form-control" asp-items="ViewBag.openingHymnId">
+                    <option value="">Please select a hymn</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.sacramentHymnId" class="control-label"></label>
-                <select asp-for="SacramentMeeting.sacramentHymnId" class ="form-control" asp-items="ViewBag.sacramentHymnId"></select>
+                <select asp-for="SacramentMeeting.sacramentHymnId" class ="form-control" asp-items="ViewBag.sacramentHymnId">
+                    <option value="">Please select a hymn</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.restHymnId" class="control-label"></label>
-                <select asp-for="SacramentMeeting.restHymnId" class ="form-control" asp-items="ViewBag.restHymnId"></select>
+                <select asp-for="SacramentMeeting.restHymnId" class ="form-control" asp-items="ViewBag.restHymnId" required="false">
+                    <option value="">Please select a hymn</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.specialMusicalNumber" class="control-label"></label>
@@ -52,12 +58,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.closingHymnId" class="control-label"></label>
-                <select asp-for="SacramentMeeting.closingHymnId" class ="form-control" asp-items="ViewBag.closingHymnId"></select>
+                <select asp-for="SacramentMeeting.closingHymnId" class ="form-control" asp-items="ViewBag.closingHymnId">
+                    <option value="">Please select a hymn</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.closingPrayer" class="control-label"></label>
                 <input asp-for="SacramentMeeting.closingPrayer" class="form-control" />
                 <span asp-validation-for="SacramentMeeting.closingPrayer" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SacramentMeeting.speakers" class="control-label"></label>
+                <button id="addSpeaker" class='btn btn-primary'>+</button>
+                <div id="Speakers" style="margin-top:10px">
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -72,4 +87,31 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+    <script>
+        var count = 1;
+        $("#addSpeaker").on("click", function () {
+            var htmlstring = "<div class='speakerRow'><label>Speaker " + count + "</label>";
+            htmlstring += "<input type='text' name='SacramentMeeting.speakers[" + (count - 1) +"].name' required='required'>";
+            htmlstring += "<input type='text' name='SacramentMeeting.speakers[" + (count - 1) + "].topic' >";
+            htmlstring += "<button class='btn btn-danger' style='padding-top:1px' onclick='deleteRow(this)' value='" + (count - 1)+"'>-</button></div>"
+            $("#Speakers").append(htmlstring);
+            count++;
+        })
+
+        function deleteRow(element) {
+            var currentRow = parseInt($(element).val());
+            let nextsiblings = document.querySelectorAll('.speakerRow:nth-child(' + (currentRow + 1) + ') ~ *');
+            for (var i = 0; i < nextsiblings.length; i++) {
+                var childElements = nextsiblings[i].children;
+                childElements[0].textContent = "Speaker" + (currentRow + 1);
+                childElements[1].setAttribute("name", "SacramentMeeting.speakers[" + currentRow + "].name");
+                childElements[2].setAttribute("name", "SacramentMeeting.speakers.topic[" + currentRow + "].topic");
+                childElements[3].setAttribute("value", currentRow)
+                currentRow++;
+            }
+            $(element).parent("div").remove();
+            count--;
+        }
+    </script>
+    }
