@@ -21,10 +21,11 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
 
         public IActionResult OnGet()
         {
-        ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "id");
-        ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "id");
-        ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "id");
-        ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "id");
+        
+            ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "display");
+            ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "display");
+            ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "display"); 
+            ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "display");
             return Page();
         }
 
@@ -42,6 +43,7 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
 
             _context.SacramentMeeting.Add(SacramentMeeting);
             await _context.SaveChangesAsync();
+           
 
             return RedirectToPage("./Index");
         }

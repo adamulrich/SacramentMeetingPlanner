@@ -26,6 +26,7 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
             if (_context.SacramentMeeting != null)
             {
                 SacramentMeeting = await _context.SacramentMeeting
+                .Include(s => s.speakers)
                 .Include(s => s.closingHymn)
                 .Include(s => s.openingHymn)
                 .Include(s => s.restHymn)

@@ -22,11 +22,11 @@ namespace SacramentMeetingPlanner.Models
 
         [Required]
         public int openingHymnId { get; set; }
-        public Hymn openingHymn { get; set; }
+        public Hymn? openingHymn { get; set; }
 
         [Required]
         public int sacramentHymnId { get; set; }
-        public Hymn sacramentHymn { get; set; }
+        public Hymn? sacramentHymn { get; set; }
 
         public int restHymnId { get; set; }
         public Hymn? restHymn { get; set; }
@@ -35,12 +35,28 @@ namespace SacramentMeetingPlanner.Models
 
         [Required]
         public int closingHymnId { get; set; }
-        public Hymn closingHymn { get; set; }
+        public Hymn? closingHymn { get; set; }
 
         [Required]
         public string closingPrayer { get; set; }
 
-        public Speaker[] speakers { get; set; }
+        public ICollection<Speaker>? speakers { get; set; }
+
+        public string speakerNames
+        {
+            get
+            {
+                string returnValue = "";
+                if (speakers != null) {
+                    foreach (Speaker s in speakers)
+                    {
+                        returnValue += s.name + "\n";
+                    }
+                    
+                }
+                return returnValue;
+            }
+        }
 
     }
 }

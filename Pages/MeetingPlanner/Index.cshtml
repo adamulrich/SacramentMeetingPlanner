@@ -43,6 +43,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.SacramentMeeting[0].closingPrayer)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SacramentMeeting[0].speakers)
+            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -62,22 +66,25 @@
                 @Html.DisplayFor(modelItem => item.openingPrayer)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.openingHymn.id)
+                @Html.DisplayFor(modelItem => item.openingHymn.display)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.sacramentHymn.id)
+                @Html.DisplayFor(modelItem => item.sacramentHymn.display)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.restHymn.id)
+                @Html.DisplayFor(modelItem => item.restHymn.display)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.specialMusicalNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.closingHymn.id)
+                @Html.DisplayFor(modelItem => item.closingHymn.display)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.closingPrayer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.speakerNames)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.sacramentMeetingId">Edit</a> |
