@@ -30,16 +30,16 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
                 return NotFound();
             }
 
-            var sacramentmeeting =  await _context.SacramentMeeting.FirstOrDefaultAsync(m => m.sacramentMeetingId == id);
+            var sacramentmeeting =  await _context.SacramentMeeting.Include(m => m.speakers).FirstOrDefaultAsync(m => m.sacramentMeetingId == id);
             if (sacramentmeeting == null)
             {
                 return NotFound();
             }
             SacramentMeeting = sacramentmeeting;
-           ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "id");
-           ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "id");
-           ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "id");
-           ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "id");
+            ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "display");
+            ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "display");
+            ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "display");
+            ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "display");
             return Page();
         }
 
@@ -53,7 +53,7 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
             }
 
             _context.Attach(SacramentMeeting).State = EntityState.Modified;
-
+            
             try
             {
                 await _context.SaveChangesAsync();
