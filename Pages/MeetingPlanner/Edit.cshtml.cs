@@ -30,16 +30,21 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
                 return NotFound();
             }
 
-            var sacramentmeeting =  await _context.SacramentMeeting.FirstOrDefaultAsync(m => m.sacramentMeetingId == id);
+            var sacramentmeeting = await _context.SacramentMeeting
+            .Include(s => s.speakers)
+            .Include(s => s.closingHymn)
+            .Include(s => s.openingHymn)
+            .Include(s => s.restHymn)
+            .Include(s => s.sacramentHymn).FirstOrDefaultAsync(m => m.sacramentMeetingId == id);
             if (sacramentmeeting == null)
             {
                 return NotFound();
             }
             SacramentMeeting = sacramentmeeting;
-           ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "id");
-           ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "id");
-           ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "id");
-           ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "id");
+           ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "display");
+           ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "display");
+           ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "display");
+           ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "display");
             return Page();
         }
 

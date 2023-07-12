@@ -19,4 +19,9 @@ html {
 
 body {
   margin-bottom: 60px;
+  --bs-body-bg: #F4F3EE;
+}
+
+.form-group {
+  padding-bottom: 10px
 }
