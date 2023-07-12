@@ -65,16 +65,49 @@
                 <span asp-validation-for="SacramentMeeting.closingPrayer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="SacramentMeeting.speakers" class="control-label"></label>
+                <button id="addSpeaker" class='btn btn-primary'>+</button>
+                <div id="Speakers">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success mt-2" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index" class="btn btn-primary mt-2">Back to List</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+    <script>
+        var count = 1;
+        $("#addSpeaker").on("click", function () {
+            var htmlstring = "<div class='speakerRow'><label>Speaker " + count + "</label>";
+            htmlstring += "<input type='text' class='form-control my-2 ms-2' name='SacramentMeeting.speakers[" + (count - 1) +"].name' required='required'>";
+            htmlstring += "<input type='text' class='form-control my-2 ms-2' name='SacramentMeeting.speakers[" + (count - 1) + "].topic' >";
+            htmlstring += "<button class='btn btn-danger ms-2' style='padding-top:1px' onclick='deleteRow(this)' value='" + (count - 1)+"'>Delete Speaker</button></div>"
+            $("#Speakers").append(htmlstring);
+            count++;
+        })
+
+        function deleteRow(element) {
+            var currentRow = parseInt($(element).val());
+            let nextsiblings = document.querySelectorAll('.speakerRow:nth-child(' + (currentRow + 1) + ') ~ *');
+            for (var i = 0; i < nextsiblings.length; i++) {
+                var childElements = nextsiblings[i].children;
+                childElements[0].textContent = "Speaker" + (currentRow + 1);
+                childElements[1].setAttribute("name", "SacramentMeeting.speakers[" + currentRow + "].name");
+                childElements[2].setAttribute("name", "SacramentMeeting.speakers.topic[" + currentRow + "].topic");
+                childElements[3].setAttribute("value", currentRow)
+                currentRow++;
+            }
+            $(element).parent("div").remove();
+            count--;
+        }
+    </script>
+    }

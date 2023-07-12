@@ -71,18 +71,18 @@
             <div class="form-group">
                 <label asp-for="SacramentMeeting.speakers" class="control-label"></label>
                 <button id="addSpeaker" class='btn btn-primary'>+</button>
-                <div id="Speakers" style="margin-top:10px">
+                <div id="Speakers">
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success mt-2"/>
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index" class="btn btn-primary">Back to List</a>
 </div>
 
 @section Scripts {
@@ -91,10 +91,10 @@
     <script>
         var count = 1;
         $("#addSpeaker").on("click", function () {
-            var htmlstring = "<div class='speakerRow'><label>Speaker " + count + "</label>";
-            htmlstring += "<input type='text' name='SacramentMeeting.speakers[" + (count - 1) +"].name' required='required'>";
-            htmlstring += "<input type='text' name='SacramentMeeting.speakers[" + (count - 1) + "].topic' >";
-            htmlstring += "<button class='btn btn-danger' style='padding-top:1px' onclick='deleteRow(this)' value='" + (count - 1)+"'>-</button></div>"
+            var htmlstring = "<div class='speakerRow row'><label>Speaker " + count + "</label>";
+            htmlstring += "<input type='text' class='form-control text-muted my-2 ms-2' placeholder='Speaker Name' name='SacramentMeeting.speakers[" + (count - 1) +"].name' required='required'>";
+            htmlstring += "<input type='text' class='form-control text-muted my-2 ms-2' placeholder='Speaker Topic' name='SacramentMeeting.speakers[" + (count - 1) + "].topic' >";
+            htmlstring += "<button class='btn btn-danger ms-2' style='padding-top:1px' onclick='deleteRow(this)' value='" + (count - 1)+"'>Delete Speaker</button></div>"
             $("#Speakers").append(htmlstring);
             count++;
         })

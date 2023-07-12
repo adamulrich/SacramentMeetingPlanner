@@ -11,72 +11,78 @@
 <div>
     <h4>SacramentMeeting</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.wardName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.wardName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.conductor)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.conductor)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.date)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.date)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.openingPrayer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.openingPrayer)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.openingHymn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.openingHymn.id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.sacramentHymn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.sacramentHymn.id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.restHymn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.restHymn.id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.specialMusicalNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.specialMusicalNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.closingHymn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.closingHymn.id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SacramentMeeting.closingPrayer)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SacramentMeeting.closingPrayer)
-        </dd>
-    </dl>
-    
+
+    <div class="card  mb-3 minmax">
+        <div class="card-header"><strong>Ward Name: </strong>@Html.DisplayNameFor(model => model.SacramentMeeting.wardName)</div>
+        <div class="card-body">
+            <table class="table table.default">
+                <tbody>
+                    <tr>
+                        <th scope="row">Conductor</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.conductor)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.date)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Opening Prayer</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.openingPrayer)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Opening Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.openingHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sacrament Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.sacramentHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Rest Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.restHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Special Musical Number</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.specialMusicalNumber)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Closing Hymn</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.closingHymn.display)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Closing Prayer</th>
+                        <td>
+                            @Html.DisplayFor(model => model.SacramentMeeting.closingPrayer)
+                        </td>
+                    </tr>                    
+
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
     <form method="post">
         <input type="hidden" asp-for="SacramentMeeting.sacramentMeetingId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <a asp-page="./Index" class="btn btn-primary">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
     </form>
+
 </div>
+
