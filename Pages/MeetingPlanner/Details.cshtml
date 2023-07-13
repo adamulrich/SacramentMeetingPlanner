@@ -78,12 +78,46 @@
 
                     </tbody>
                 </table>
-                
+
+                <a class='btn btn-primary' asp-page="./Index">Back to List</a>
+                <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit</a>
+
+
+
+                <table class="table table.default">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Topic
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.SacramentMeeting.speakers)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.topic)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a class="btn btn-warning"
+                   asp-page="../Speakers/Index"
+                   asp-route-sacramentMeetingId="@Model.SacramentMeeting?.sacramentMeetingId">
+                    Edit Speakers
+                </a>
+
+
             </div>
         </div>
-
-        <a class='btn btn-primary' asp-page="./Index">Back to List</a>
-        <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit</a>
 
     </div>
 
