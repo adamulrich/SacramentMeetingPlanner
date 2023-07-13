@@ -1,0 +1,31 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.Speakers.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Speaker</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Speaker.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Speaker.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Speaker.topic)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Speaker.topic)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Speaker?.id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

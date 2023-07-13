@@ -73,14 +73,9 @@
                         {
                             var index = 1;
                             @foreach (var speaker in Model.SacramentMeeting.speakers)
+                                
                             {
-                                <div class='speakerRow'>
-                                    <label>Speaker @index</label>
-                                    <input type='text' name='@speaker.name' required='required' value="@speaker.name">
-                                    <input type='text' name='@speaker.topic' value="@speaker.topic">
-                                    <button class='btn btn-danger' style='padding-top:1px' onclick='deleteRow(this)' value='@index'>-</button>
-                                </div>
-                                index++;
+                                
                             }
                         }
                     </div>
@@ -97,39 +92,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-
-
-    <script>
-
-        var count = document.getElementById("Speakers").children.length + 1;
-
-        $("#addSpeaker").on("click", function () {
-            var htmlstring = "<div class='speakerRow'><label>Speaker " + count + "</label>";
-            htmlstring += "<input type='text' name='SacramentMeeting.speakers[" + (count - 1) + "].name' required='required'>";
-            htmlstring += "<input type='text' name='SacramentMeeting.speakers[" + (count - 1) + "].topic' >";
-            htmlstring += "<button class='btn btn-danger' style='padding-top:1px' onclick='deleteRow(this)' value='" + (count - 1) + "'>-</button></div>"
-            $("#Speakers").append(htmlstring);
-            count++;
-        })
-
-        function deleteRow(element) {
-            var currentRow = parseInt($(element).val());
-            let nextsiblings = document.querySelectorAll('.speakerRow:nth-child(' + (currentRow + 1) + ') ~ *');
-            for (var i = 0; i < nextsiblings.length; i++) {
-                var childElements = nextsiblings[i].children;
-                childElements[0].textContent = "Speaker" + (currentRow + 1);
-                childElements[1].setAttribute("name", "SacramentMeeting.speakers[" + currentRow + "].name");
-                childElements[2].setAttribute("name", "SacramentMeeting.speakers.topic[" + currentRow + "].topic");
-                childElements[3].setAttribute("value", currentRow)
-                currentRow++;
-            }
-            $(element).parent("div").remove();
-            count--;
-        }
-
-    </script>
-
 }
 
 

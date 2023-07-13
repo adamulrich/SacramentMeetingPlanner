@@ -1,4 +1,6 @@
 ﻿using Microsoft.Build.Framework;
+using Newtonsoft.Json.Linq;
+using SacramentMeetingPlanner.Models;
 
 namespace SacramentMeetingPlanner.Models
 {
