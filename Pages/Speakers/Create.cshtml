@@ -1,0 +1,42 @@
+﻿@page
+@model SacramentMeetingPlanner.Pages.Speakers.CreateModel
+
+@{
+    ViewData["Title"] = "Add Speaker";
+}
+
+<h1>Add Speaker</h1>
+
+<h4>Speaker</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Speaker.sacramentMeetingId" class ="form-control" hidden value="@Model.sacramentMeetingId" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Speaker.name" class="control-label"></label>
+                <input asp-for="Speaker.name" class="form-control" />
+                <span asp-validation-for="Speaker.name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Speaker.topic" class="control-label"></label>
+                <input asp-for="Speaker.topic" class="form-control" />
+                <span asp-validation-for="Speaker.topic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to Speakers</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

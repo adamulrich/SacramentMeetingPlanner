@@ -18,11 +18,12 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
         {
             _context = context;
         }
-
+       
         public IList<SacramentMeeting> SacramentMeeting { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
+ 
             if (_context.SacramentMeeting != null)
             {
                 SacramentMeeting = await _context.SacramentMeeting

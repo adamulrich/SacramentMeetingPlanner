@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using SacramentMeetingPlanner.Data;
 using SacramentMeetingPlanner.Models;
 
-namespace SacramentMeetingPlanner.Pages.MeetingPlanner
+
+
+namespace SacramentMeetingPlanner.Pages.Speakers
 {
     public class EditModel : PageModel
     {
@@ -20,33 +22,32 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
             _context = context;
         }
 
+        
+
         [BindProperty]
-        public SacramentMeeting SacramentMeeting { get; set; } = default!;
+        public Speaker Speaker { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        [BindProperty]
+        public int sacramentMeetingId { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int? id, int sacramentMeetingId)
         {
-            if (id == null || _context.SacramentMeeting == null)
+            this.sacramentMeetingId = sacramentMeetingId;
+
+            if (id == null || _context.Speaker == null)
             {
                 return NotFound();
             }
 
-            var sacramentmeeting = await _context.SacramentMeeting
-            .Include(s => s.speakers)
-            .Include(s => s.closingHymn)
-            .Include(s => s.openingHymn)
-            .Include(s => s.restHymn)
-            .Include(s => s.sacramentHymn).FirstOrDefaultAsync(m => m.sacramentMeetingId == id);
-            if (sacramentmeeting == null)
+            var speaker =  await _context.Speaker.FirstOrDefaultAsync(m => m.id == id);
+            if (speaker == null)
             {
                 return NotFound();
             }
-            SacramentMeeting = sacramentmeeting;
-           ViewData["closingHymnId"] = new SelectList(_context.Hymn, "id", "display");
-           ViewData["openingHymnId"] = new SelectList(_context.Hymn, "id", "display");
-           ViewData["restHymnId"] = new SelectList(_context.Hymn, "id", "display");
-           ViewData["sacramentHymnId"] = new SelectList(_context.Hymn, "id", "display");
+            Speaker = speaker;
             return Page();
         }
+
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
@@ -57,7 +58,7 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
                 return Page();
             }
 
-            _context.Attach(SacramentMeeting).State = EntityState.Modified;
+            _context.Attach(Speaker).State = EntityState.Modified;
 
             try
             {
@@ -65,7 +66,7 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SacramentMeetingExists(SacramentMeeting.sacramentMeetingId))
+                if (!SpeakerExists(Speaker.id))
                 {
                     return NotFound();
                 }
@@ -75,12 +76,13 @@ namespace SacramentMeetingPlanner.Pages.MeetingPlanner
                 }
             }
 
-            return RedirectToPage("./Index/");
+
+            return RedirectToPage("./Index", new { sacramentMeetingId = sacramentMeetingId.ToString() } );
         }
 
-        private bool SacramentMeetingExists(int id)
+        private bool SpeakerExists(int id)
         {
-          return (_context.SacramentMeeting?.Any(e => e.sacramentMeetingId == id)).GetValueOrDefault();
+          return (_context.Speaker?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
