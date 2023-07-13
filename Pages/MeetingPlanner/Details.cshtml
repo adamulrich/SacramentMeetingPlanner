@@ -75,23 +75,14 @@
                                 @Html.DisplayFor(model => model.SacramentMeeting.closingPrayer)
                             </td>
                         </tr>                    
-
-                    </tbody>
-                </table>
-
-                <a class='btn btn-primary' asp-page="./Index">Back to List</a>
-                <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit</a>
-
-
-
                 <table class="table table.default">
                     <thead>
                         <tr>
                             <th>
-                                Name
+                                Speaker Name
                             </th>
                             <th>
-                                Topic
+                                Speaker Topic
                             </th>
                         </tr>
                     </thead>
@@ -109,18 +100,17 @@
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-warning"
-                   asp-page="../Speakers/Index"
-                   asp-route-sacramentMeetingId="@Model.SacramentMeeting?.sacramentMeetingId">
-                    Edit Speakers
-                </a>
-
-
             </div>
+            </div>
+                    <a class='btn btn-primary' asp-page="./Index">Back to List</a>
+                    <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit</a>
+                    <a class="btn btn-warning"
+                    asp-page="../Speakers/Index"
+                    asp-route-sacramentMeetingId="@Model.SacramentMeeting?.sacramentMeetingId">
+                        Edit Speakers
+                    </a>
         </div>
-
     </div>
-
 </body>
 
 <script type="text/javascript">
