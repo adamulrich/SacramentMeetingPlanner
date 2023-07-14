@@ -2,12 +2,12 @@
 @model SacramentMeetingPlanner.Pages.MeetingPlanner.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Program";
 }
 
-<h1>Edit</h1>
+<h1>Edit Sacrament Meeting Progra</h1>
 
-<h4>SacramentMeeting</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -35,27 +35,27 @@
                 <span asp-validation-for="SacramentMeeting.openingPrayer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SacramentMeeting.openingHymnId" class="control-label"></label>
+                <label asp-for="SacramentMeeting.openingHymn" class="control-label"></label>
                 <select asp-for="SacramentMeeting.openingHymnId" class="form-control" asp-items="ViewBag.openingHymnId"></select>
                 <span asp-validation-for="SacramentMeeting.openingHymnId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SacramentMeeting.sacramentHymnId" class="control-label"></label>
+                <label asp-for="SacramentMeeting.sacramentHymn" class="control-label"></label>
                 <select asp-for="SacramentMeeting.sacramentHymnId" class="form-control" asp-items="ViewBag.sacramentHymnId"></select>
                 <span asp-validation-for="SacramentMeeting.sacramentHymnId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SacramentMeeting.restHymnId" class="control-label"></label>
+                <label asp-for="SacramentMeeting.restHymn" class="control-label"></label>
                 <select asp-for="SacramentMeeting.restHymnId" class="form-control" asp-items="ViewBag.restHymnId"></select>
                 <span asp-validation-for="SacramentMeeting.restHymnId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SacramentMeeting.specialMusicalNumber" class="control-label"></label>
-                <input asp-for="SacramentMeeting.specialMusicalNumber" class="form-control" />
+                <textarea rows="3" asp-for="SacramentMeeting.specialMusicalNumber" class="form-control"></textarea>
                 <span asp-validation-for="SacramentMeeting.specialMusicalNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SacramentMeeting.closingHymnId" class="control-label"></label>
+                <label asp-for="SacramentMeeting.closingHymn" class="control-label"></label>
                 <select asp-for="SacramentMeeting.closingHymnId" class="form-control" asp-items="ViewBag.closingHymnId"></select>
                 <span asp-validation-for="SacramentMeeting.closingHymnId" class="text-danger"></span>
             </div>

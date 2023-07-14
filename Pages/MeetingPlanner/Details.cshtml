@@ -2,7 +2,7 @@
 @model SacramentMeetingPlanner.Pages.MeetingPlanner.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Sacrament Meeting Program";
 }
 <body>
     <h1>Details</h1>
@@ -13,7 +13,7 @@
 
 
     <div>
-        <h4>SacramentMeeting</h4>
+        <h4>Sacrament Meeting</h4>
         <hr />
 
         <div  id='print-content' class="card  mb-3 minmax">
@@ -52,16 +52,22 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">Rest Hymn</th>
-                            <td>
-                                @Html.DisplayFor(model => model.SacramentMeeting.restHymn.display)
-                            </td>
+                            @if (Model.SacramentMeeting.restHymnId != 1)
+                            {  
+                                <th scope="row">Rest Hymn</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.SacramentMeeting.restHymn.display)
+                                </td>
+                            } 
                         </tr>
                         <tr>
-                            <th scope="row">Special Musical Number</th>
-                            <td>
-                                @Html.DisplayFor(model => model.SacramentMeeting.specialMusicalNumber)
-                            </td>
+                            @if (Model.SacramentMeeting.specialMusicalNumber != null)
+                            {
+                                <th scope="row">Special Musical Number</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.SacramentMeeting.specialMusicalNumber)
+                                </td>
+                            }
                         </tr>
                         <tr>
                             <th scope="row">Closing Hymn</th>
@@ -103,7 +109,7 @@
             </div>
             </div>
                     <a class='btn btn-primary' asp-page="./Index">Back to List</a>
-                    <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit</a>
+                    <a class='btn btn-warning' asp-page="./Edit" asp-route-id="@Model.SacramentMeeting?.sacramentMeetingId">Edit Program</a>
                     <a class="btn btn-warning"
                     asp-page="../Speakers/Index"
                     asp-route-sacramentMeetingId="@Model.SacramentMeeting?.sacramentMeetingId">
