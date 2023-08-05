@@ -9,6 +9,5 @@ This project was a group final for BYU-I .Net SW Dev (CSE 325). Requirements wer
 * .net core 7
 * SQLite
 * razor pages
-
-* 
 * entity framework
+
